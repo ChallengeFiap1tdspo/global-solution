@@ -32,3 +32,27 @@ export default function Cadastro() {
       contato: data.contato,        
       tipoVeiculo: data.tipoVeiculo,
     };
+    try {
+     
+     
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-KEY': API_KEY                
+        },
+        body: JSON.stringify(novoTrabalhador)
+      });
+ 
+   
+      if (response.status === 201) {
+        alert("Cadastro realizado com sucesso!");
+         
+     
+      } else {
+       
+        const erro = await response.json();
+        const mensagemErro = erro.erro || `Erro ${response.status}: Falha ao cadastrar.`;
+        setApiError(mensagemErro);
+        alert(mensagemErro);
+      }
