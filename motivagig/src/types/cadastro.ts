@@ -3,4 +3,7 @@ export type CadastroForm = {
   email: string;
   senha: string;
   confirmarSenha: string;
+  tipoVeiculo: String;
+  cpf: String;
+  contato: String;
 };
