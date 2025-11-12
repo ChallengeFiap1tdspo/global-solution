@@ -31,3 +31,9 @@ export default function Login() {
         },
         body: JSON.stringify(data),
       });
+      
+      if (response.ok) {
+        const trabalhadorEncontrado = await response.json();
+        sessionStorage.setItem("trabalhadorLogado", JSON.stringify(trabalhadorEncontrado));
+        navigate("/ajuda");
+      }
