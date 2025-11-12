@@ -1,5 +1,5 @@
 export default function Equipe() {
   return (
-    <p></p>
+    <p>EQUIPE</p>
   );
 }

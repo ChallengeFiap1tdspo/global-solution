@@ -1,5 +1,5 @@
 export default function Sobre() {
   return (
-    <p></p>
+    <p>SOBRE</p>
   );
 }
