@@ -183,4 +183,11 @@ export default function Cadastro() {
          
           disabled={isLoading}
           className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-pink-500 transition-colors font-semibold disabled:bg-purple-300 disabled:cursor-not-allowed"
-        ></button>
+        >
+       
+          {isLoading ? "Cadastrando..." : "Cadastrar"}
+        </button>
+      </form>
+    </div>
+  );
+}
