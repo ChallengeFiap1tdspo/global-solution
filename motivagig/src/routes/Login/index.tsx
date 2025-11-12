@@ -119,4 +119,17 @@ export default function Login() {
               ? 'bg-gray-400 cursor-not-allowed'
               : 'bg-purple-600 hover:bg-pink-500'
           }`}
-        ></button>
+        >
+          {isLoading ? "Entrando..." : "Entrar"}
+        </button>
+ 
+        <Link
+          to="/cadastro"
+          className="text-purple-600 text-center hover:underline mt-4 block"
+        >
+          Novo trabalhador? Cadastre-se aqui
+        </Link>
+      </form>
+    </div>
+  );
+}
