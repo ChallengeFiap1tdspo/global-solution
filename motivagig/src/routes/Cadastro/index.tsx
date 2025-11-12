@@ -138,3 +138,17 @@ export default function Cadastro() {
             <p className="text-pink-600 text-sm mt-1">{errors.tipoVeiculo.message}</p>
           )}
         </div>
+        <div className="mb-4">
+          <label className="block text-pink-600 font-semibold mb-2">
+            Senha
+          </label>
+          <input
+            type="password"
+            {...register("senha", { required: "Informe a senha" })}
+            className="w-full border border-purple-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-400"
+            placeholder="••••••••"
+          />
+          {errors.senha && (
+            <p className="text-pink-600 text-sm mt-1">{errors.senha.message}</p>
+          )}
+        </div>
