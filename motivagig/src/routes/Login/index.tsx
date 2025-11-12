@@ -86,3 +86,22 @@ export default function Login() {
             <p className="text-pink-600 text-sm mt-1">{errors.cpf.message}</p>
           )}
         </div>
+        <div className="mb-4">
+          <label className="block text-pink-600 font-semibold mb-2">
+            Senha
+          </label>
+          <input
+            type="password"
+            placeholder="••••••••"
+            {...register("senha", { required: "Informe a senha" })}
+            className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 ${
+              errors.senha
+                ? 'border-pink-600 ring-pink-400'
+                : 'border-purple-300 focus:ring-purple-400'
+            }`}
+            disabled={isLoading}
+          />
+          {errors.senha && (
+            <p className="text-pink-600 text-sm mt-1">{errors.senha.message}</p>
+          )}
+        </div>
