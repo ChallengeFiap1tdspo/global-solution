@@ -172,3 +172,15 @@ export default function Cadastro() {
             </p>
           )}
         </div>
+        {apiError && (
+          <div className="mb-4 p-3 bg-pink-100 text-pink-700 rounded-md text-center">
+            {apiError}
+          </div>
+        )}
+ 
+        <button
+          type="submit"
+         
+          disabled={isLoading}
+          className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-pink-500 transition-colors font-semibold disabled:bg-purple-300 disabled:cursor-not-allowed"
+        ></button>
