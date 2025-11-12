@@ -31,9 +31,27 @@ export default function Login() {
         },
         body: JSON.stringify(data),
       });
-      
+
       if (response.ok) {
         const trabalhadorEncontrado = await response.json();
         sessionStorage.setItem("trabalhadorLogado", JSON.stringify(trabalhadorEncontrado));
         navigate("/ajuda");
       }
+      else if (response.status === 401 || response.status === 404) {
+        setApiError("CPF ou Senha inválidos.");
+      } else {
+        const errorData = await response.json();
+        setApiError(errorData.erro || `Erro ${response.status}: ${response.statusText}`);
+      }
+    } catch (error: unknown) {
+      console.error("Falha ao conectar com a API:", error);
+      setApiError(
+        error instanceof Error
+          ? error.message
+          : "Não foi possível conectar ao servidor. Tente novamente mais tarde."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+ 
