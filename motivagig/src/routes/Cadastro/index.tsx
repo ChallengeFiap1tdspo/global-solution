@@ -120,3 +120,21 @@ export default function Cadastro() {
             <p className="text-pink-600 text-sm mt-1">{errors.cpf.message}</p>
           )}
         </div>
+        <div className="mb-4">
+          <label className="block text-pink-600 font-semibold mb-2">
+            Tipo de Veículo
+          </label>
+          <select
+            {...register("tipoVeiculo", { required: "Selecione o veículo" })}
+            className="w-full border border-purple-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-400"
+          >
+            <option value="">Selecione...</option>
+            <option value="Carro">Carro</option>
+            <option value="Moto">Moto</option>
+            <option value="Bicicleta">Bicicleta</option>
+            <option value="Nenhum">Nenhum</option>
+          </select>
+          {errors.tipoVeiculo && (
+            <p className="text-pink-600 text-sm mt-1">{errors.tipoVeiculo.message}</p>
+          )}
+        </div>
