@@ -63,3 +63,26 @@ export default function Login() {
         <h1 className="text-3xl font-bold text-center text-purple-600 mb-6">
           Acesso do Trabalhador
         </h1>
+        <div className="mb-4">
+          <label className="block text-pink-600 font-semibold mb-2">
+            CPF (somente números)
+          </label>
+          <input
+            type="text"
+            placeholder="12345678900"
+            {...register("cpf", {
+              required: "Informe seu CPF",
+         
+              pattern: { value: /^\d{11}$/, message: "CPF deve conter 11 números" }
+            })}
+            className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 ${
+              errors.cpf
+                ? 'border-pink-600 ring-pink-400'
+                : 'border-purple-300 focus:ring-purple-400'
+            }`}
+            disabled={isLoading}
+          />
+          {errors.cpf && (
+            <p className="text-pink-600 text-sm mt-1">{errors.cpf.message}</p>
+          )}
+        </div>
