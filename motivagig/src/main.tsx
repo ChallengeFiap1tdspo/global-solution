@@ -9,13 +9,14 @@ import Home from "./routes/Home/index.tsx";
 import Faq from "./routes/Faq/index.tsx";
 import Contato from "./routes/Contato/index.tsx";
 import Error from "./routes/Error/index.tsx";
-
 import Equipe from "./routes/Equipe/index.tsx";
 import Sobre from "./routes/Sobre/index.tsx";
 import Login from "./routes/Login/index.tsx";
 import Cadastro from "./routes/Cadastro/index.tsx";
-import Curso from "./routes/Curso/index.tsx"; 
 
+
+import CursoSemana from "./routes/Curso/index.tsx";
+import Feedback from "./routes/Feedback/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,14 +25,14 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/curso-semana", element: <Curso /> },
+      { path: "/curso-semana", element: <CursoSemana /> },
+      { path: "/feedback", element: <Feedback /> },
       { path: "/faq", element: <Faq /> },
       { path: "/contato", element: <Contato /> },
       { path: "/equipe", element: <Equipe /> },
       { path: "/sobre", element: <Sobre /> },
       { path: "/login", element: <Login /> },
       { path: "/cadastro", element: <Cadastro /> },
-     
     ],
   },
 ]);
