@@ -56,3 +56,15 @@ export default function Cadastro() {
         setApiError(mensagemErro);
         alert(mensagemErro);
       }
+      } catch (error) {
+     
+      console.error('Falha na requisição:', error);
+      const errorMsg = "Não foi possível conectar ao servidor. Tente novamente.";
+      setApiError(errorMsg);
+      alert(errorMsg);
+   
+    } finally {
+     
+      setIsLoading(false);
+    }
+  };
