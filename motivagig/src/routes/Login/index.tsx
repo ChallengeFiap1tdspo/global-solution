@@ -105,3 +105,18 @@ export default function Login() {
             <p className="text-pink-600 text-sm mt-1">{errors.senha.message}</p>
           )}
         </div>
+        {apiError && (
+          <div className="bg-pink-100 border border-pink-400 text-pink-700 p-3 rounded-md mb-4 text-sm">
+            {apiError}
+          </div>
+        )}
+ 
+        <button
+          type="submit"
+          disabled={isLoading}
+          className={`w-full text-white py-2 rounded-md transition-colors font-semibold ${
+            isLoading
+              ? 'bg-gray-400 cursor-not-allowed'
+              : 'bg-purple-600 hover:bg-pink-500'
+          }`}
+        ></button>
