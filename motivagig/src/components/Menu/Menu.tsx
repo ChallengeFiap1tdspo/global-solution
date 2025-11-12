@@ -1,63 +1,32 @@
-import { useState } from "react"
-import { NavLink } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom";
+import type { NavLinkItem } from "../../types/menu";
 
-export default function Menu({ links = [] }) {
-  const [open, setOpen] = useState(false)
+type MenuProps = {
+  links: NavLinkItem[];
+};
+
+export default function Menu({ links }: MenuProps) {
+  const location = useLocation();
 
   return (
-    <nav className="bg-white text-purple-600 px-4 py-3 border-b">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-
-        <div className="font-bold text-lg text-pink-500">
-          App
-        </div>
-
-        <div className="hidden md:flex gap-4">
-          {links.map((link) => (
-            <NavLink
-              key={link.label}
+    <nav className="flex items-center justify-between px-6 py-4">
+      <h1 className="text-2xl font-bold tracking-wide">Gig.Up</h1>
+      <ul className="flex gap-6">
+        {links.map((link) => (
+          <li key={link.href}>
+            <Link
               to={link.href}
-              className={({ isActive }) =>
-                `px-3 py-2 rounded-md transition-colors ${
-                  isActive
-                    ? "bg-purple-600 text-white"
-                    : "text-purple-600 hover:text-pink-500"
-                }`
-              }
+              className={`${
+                location.pathname === link.href
+                  ? "border-b-2 border-white text-white"
+                  : "text-white/80 hover:text-white"
+              } transition-colors font-medium`}
             >
               {link.label}
-            </NavLink>
-          ))}
-        </div>
-
-        <button
-          className="md:hidden p-2 rounded-md"
-          onClick={() => setOpen(!open)}
-        >
-          {open ? "✖" : "☰"}
-        </button>
-      </div>
-
-      {open && (
-        <div className="md:hidden mt-2 flex flex-col gap-2 px-2 pb-2">
-          {links.map((link) => (
-            <NavLink
-              key={link.label}
-              to={link.href}
-              onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                `block px-3 py-2 rounded-md transition-colors ${
-                  isActive
-                    ? "bg-purple-600 text-white"
-                    : "text-purple-600 hover:text-pink-500"
-                }`
-              }
-            >
-              {link.label}
-            </NavLink>
-          ))}
-        </div>
-      )}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </nav>
-  )
+  );
 }

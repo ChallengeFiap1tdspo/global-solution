@@ -4,7 +4,7 @@ import type { NavLinkItem } from "../../types/menu";
 export default function Cabecalho() {
   const links: NavLinkItem[] = [
     { href: "/", label: "Home" },
-    { href: "/curso-semana", label: "Curso da semana" },
+    { href: "/curso-semana", label: "Curso da Semana" },
     { href: "/feedback", label: "Feedback" },
     { href: "/faq", label: "FAQ" },
     { href: "/contato", label: "Contato" },
@@ -13,7 +13,7 @@ export default function Cabecalho() {
   ];
 
   return (
-    <header>
+    <header className="bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md">
       <Menu links={links} />
     </header>
   );
