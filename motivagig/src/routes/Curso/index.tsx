@@ -19,3 +19,15 @@ export default function CursoSemana() {
           Neste curso, você vai aprender técnicas simples e práticas para
           equilibrar o tempo entre trabalho, descanso e aprendizado.
         </p>
+        <button
+          onClick={handleNavigateToLogin}
+         
+          className="mt-8 w-full py-3 rounded-2xl bg-purple-600 text-white font-semibold hover:bg-pink-500 transition-colors"
+        >
+          Faça login para acessar
+        </button>
+      </div>
+    </div>
+  );
+}
+ 
