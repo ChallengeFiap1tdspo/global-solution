@@ -1,33 +1,103 @@
-import { useNavigate } from "react-router-dom";
- 
+import { useState } from "react";
+import CursoEtapa from "../../components/CursoEtapa/CursoEtapa";
+import type { Etapa } from "../../types/cursoTypes";
+
 export default function CursoSemana() {
-  const navigate = useNavigate();
- 
- 
-  const handleNavigateToLogin = () => {
-    navigate("/login");
+  const [etapaAtual, setEtapaAtual] = useState(0);
+
+  const etapas: Etapa[] = [
+    {
+      id: 1,
+      titulo: "Segunda — Introdução ao Python",
+      conteudo: [
+        "Python é uma linguagem de programação de alto nível, muito usada em automação, web, ciência de dados e IA.",
+        "Sua principal vantagem é a simplicidade da sintaxe, o que a torna ideal para iniciantes.",
+        "Para começar, instale o Python ou use plataformas online como o Programiz.",
+      ],
+      questoes: [
+        {
+          pergunta: "O que é Python?",
+          alternativas: [
+            "Um tipo de banco de dados",
+            "Uma linguagem de programação",
+            "Um navegador web",
+            "Um sistema operacional",
+          ],
+          correta: "Uma linguagem de programação",
+        },
+      ],
+    },
+    {
+      id: 2,
+      titulo: "Terça — Variáveis e Tipos de Dados",
+      conteudo: [
+        "Variáveis são usadas para armazenar informações que podem ser usadas depois.",
+        "Exemplo: nome = 'João' ou idade = 25",
+        "Python reconhece automaticamente o tipo de dado, como string, int, float, bool.",
+      ],
+      questoes: [
+        {
+          pergunta: "Como declaramos uma variável chamada nome?",
+          alternativas: [
+            "let nome = 'João'",
+            "var nome = 'João'",
+            "nome = 'João'",
+            "string nome = 'João'",
+          ],
+          correta: "nome = 'João'",
+        },
+      ],
+    },
+    {
+      id: 3,
+      titulo: "Quarta — Estruturas de Repetição",
+      conteudo: [
+        "Os loops são usados para repetir instruções várias vezes.",
+        "O comando 'for' percorre uma sequência (lista, texto, range).",
+        "Exemplo: for i in range(5): print(i)",
+      ],
+      questoes: [
+        {
+          pergunta: "Qual comando usamos para repetir um bloco de código?",
+          alternativas: ["while", "repeat", "loop", "if"],
+          correta: "while",
+        },
+      ],
+    },
+  ];
+
+  const etapa = etapas[etapaAtual];
+
+  const avancarEtapa = () => {
+    if (etapaAtual < etapas.length - 1) {
+      setEtapaAtual(etapaAtual + 1);
+    }
   };
+
+  const voltarEtapa = () => {
+    if (etapaAtual > 0) {
+      setEtapaAtual(etapaAtual - 1);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-pink-50 p-8 flex flex-col items-center text-center">
-      <h1 className="text-4xl font-bold text-purple-700">Curso da Semana</h1>
-      <p className="mt-3 text-pink-600 text-lg">
-        “Gestão de Tempo e Produtividade para Autônomos”
+    <div className="min-h-screen bg-gradient-to-b from-white to-pink-50 flex flex-col items-center text-center p-8">
+      <h1 className="text-4xl font-extrabold text-purple-700">Curso da Semana</h1>
+      <p className="mt-3 text-pink-600 text-lg font-medium">
+        Python do Iniciante ao Intermediário
       </p>
- 
-      <div className="mt-10 bg-white shadow-md rounded-2xl p-6 max-w-2xl">
-        <p className="text-slate-700">
-          Neste curso, você vai aprender técnicas simples e práticas para
-          equilibrar o tempo entre trabalho, descanso e aprendizado.
-        </p>
-        <button
-          onClick={handleNavigateToLogin}
-         
-          className="mt-8 w-full py-3 rounded-2xl bg-purple-600 text-white font-semibold hover:bg-pink-500 transition-colors"
-        >
-          Faça login para acessar
-        </button>
-      </div>
+
+      <CursoEtapa
+        etapa={etapa}
+        etapaAtual={etapaAtual}
+        totalEtapas={etapas.length}
+        onAvancar={avancarEtapa}
+        onVoltar={voltarEtapa}
+      />
+
+      <p className="mt-10 text-slate-600 text-sm">
+        Etapa {etapaAtual + 1} de {etapas.length}
+      </p>
     </div>
   );
 }
- 
