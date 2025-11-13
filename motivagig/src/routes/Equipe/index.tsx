@@ -1,11 +1,12 @@
-// Integrantes.tsx
+
 import { useEffect } from "react";
 import fotoEmanuel from "../../img/FotoEmanuel.jpg";
 import fotoPaulo from "../../img/FotoPaulo.jpg";
 import fotoAlef from "../../img/FotoAlef.jpg";
 import logoLinkedin from "../../img/LogoLinkedlin.png";
 import logoGithub from "../../img/GitHub-logo.png";
-import { IntegranteType } from "../../types/integrante";
+import type { IntegranteType } from "../../types/integranteType";
+
 
 const integrantes: IntegranteType[] = [
   {
