@@ -2,27 +2,24 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import type { LoginForm } from "../../types/login";
- 
- 
-const API_URL = import.meta.env.VITE_API_URL || "https://challenge-4-java.onrender.com/api";
-const API_KEY = import.meta.env.VITE_API_KEY || "chave_secreta_muito_segura_123456";
- 
+
+const API_URL = import.meta.env.VITE_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
+
 export default function Login() {
- 
   const { register, handleSubmit, formState: { errors } } = useForm<LoginForm>();
- 
+
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
- 
- 
+
   const onSubmit = async (data: LoginForm) => {
     setIsLoading(true);
     setApiError(null);
- 
-   
+
     try {
-      const response = await fetch(`${API_URL}/trabalhadores/login`, {
+     
+      const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -54,6 +51,7 @@ export default function Login() {
       setIsLoading(false);
     }
   };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-pink-50 to-purple-50">
       <form
@@ -72,7 +70,6 @@ export default function Login() {
             placeholder="12345678900"
             {...register("cpf", {
               required: "Informe seu CPF",
-         
               pattern: { value: /^\d{11}$/, message: "CPF deve conter 11 números" }
             })}
             className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 ${
@@ -110,7 +107,7 @@ export default function Login() {
             {apiError}
           </div>
         )}
- 
+
         <button
           type="submit"
           disabled={isLoading}
@@ -122,7 +119,7 @@ export default function Login() {
         >
           {isLoading ? "Entrando..." : "Entrar"}
         </button>
- 
+
         <Link
           to="/cadastro"
           className="text-purple-600 text-center hover:underline mt-4 block"
