@@ -9,14 +9,20 @@ export default function CursoSemana() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const trabalhadorLogado = sessionStorage.getItem("trabalhadorLogado");
-    
-    if (!trabalhadorLogado) {
-      navigate("/login");
-      return;
-    }
-    
-    setIsLoading(false);
+    const checkAuth = () => {
+      const trabalhadorLogado = sessionStorage.getItem("trabalhadorLogado");
+      
+      if (!trabalhadorLogado) {
+        console.log("Usuário não autenticado, redirecionando para login...");
+        navigate("/login", { replace: true });
+        return;
+      }
+      
+      console.log("Usuário autenticado:", JSON.parse(trabalhadorLogado));
+      setIsLoading(false);
+    };
+
+    checkAuth();
   }, [navigate]);
 
   const etapas: Etapa[] = [
@@ -99,7 +105,7 @@ export default function CursoSemana() {
       <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-red-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-red-400 font-medium">Carregando...</p>
+          <p className="text-red-400 font-medium">Verificando autenticação...</p>
         </div>
       </div>
     );
