@@ -1,9 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import CursoEtapa from "../../components/CursoEtapa/CursoEtapa";
 import type { Etapa } from "../../types/cursoTypes";
 
 export default function CursoSemana() {
   const [etapaAtual, setEtapaAtual] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const trabalhadorLogado = sessionStorage.getItem("trabalhadorLogado");
+    
+    if (!trabalhadorLogado) {
+      navigate("/login");
+      return;
+    }
+    
+    setIsLoading(false);
+  }, [navigate]);
 
   const etapas: Etapa[] = [
     {
@@ -79,6 +93,17 @@ export default function CursoSemana() {
       setEtapaAtual(etapaAtual - 1);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-red-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-red-400 font-medium">Carregando...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-red-900 flex flex-col items-center text-center p-8">
