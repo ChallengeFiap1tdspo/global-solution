@@ -81,9 +81,10 @@ export default function CursoSemana() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-pink-50 flex flex-col items-center text-center p-8">
-      <h1 className="text-4xl font-extrabold text-purple-700">Curso da Semana</h1>
-      <p className="mt-3 text-pink-600 text-lg font-medium">
+    <div className="min-h-screen bg-gradient-to-b from-black to-red-900 flex flex-col items-center text-center p-8">
+      <h1 className="text-4xl font-extrabold text-red-400">Curso da Semana</h1>
+
+      <p className="mt-3 text-red-200 text-lg font-medium">
         Python do Iniciante ao Intermediário
       </p>
 
@@ -95,7 +96,7 @@ export default function CursoSemana() {
         onVoltar={voltarEtapa}
       />
 
-      <p className="mt-10 text-slate-600 text-sm">
+      <p className="mt-10 text-red-300 text-sm">
         Etapa {etapaAtual + 1} de {etapas.length}
       </p>
     </div>

@@ -28,15 +28,15 @@ export default function Feedback() {
   const dicaAleatoria = dicas[Math.floor(Math.random() * dicas.length)];
 
   const enviarFeedback = () => {
-    alert(`Valeu, ${user?.email.split("@")[0]}! Feedback enviado 💜`);
+    alert(`Valeu, ${user?.email.split("@")[0]}! Feedback enviado ❤️`);
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-white to-pink-50 p-6 text-center">
-      <h1 className="text-3xl font-extrabold text-purple-700 mb-2">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-black to-red-900 p-6 text-center">
+      <h1 className="text-3xl font-extrabold text-red-400 mb-2">
         Olá, {user?.email.split("@")[0]} 👋
       </h1>
-      <p className="text-pink-600 mb-8 max-w-md">
+      <p className="text-red-300 mb-8 max-w-md">
         Como está o seu dia? Conta pra gente!
       </p>
 
@@ -59,15 +59,17 @@ export default function Feedback() {
         aoSelecionar={setFaturamento}
       />
 
-      <div className="bg-white shadow-md rounded-2xl p-5 w-full max-w-md mb-6">
-        <h2 className="text-lg font-semibold text-purple-700 mb-3">
+      <div className="bg-black border border-red-600 shadow-lg shadow-red-800/40 rounded-2xl p-5 w-full max-w-md mb-6">
+        <h2 className="text-lg font-semibold text-red-400 mb-3">
           Quer deixar um comentário?
         </h2>
+
         <textarea
           value={mensagem}
           onChange={(e) => setMensagem(e.target.value)}
           placeholder="Fale um pouco sobre seu dia..."
-          className="w-full h-28 p-3 border border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-300 outline-none text-sm"
+          className="w-full h-28 p-3 border border-red-700 bg-black text-red-300 rounded-xl 
+          focus:ring-2 focus:ring-red-500 outline-none text-sm placeholder-red-600"
         ></textarea>
       </div>
 
@@ -75,7 +77,8 @@ export default function Feedback() {
 
       <button
         onClick={enviarFeedback}
-        className="px-8 py-3 bg-purple-600 text-white font-semibold rounded-2xl hover:bg-pink-500 transition"
+        className="px-8 py-3 bg-red-600 text-black font-semibold rounded-2xl 
+        hover:bg-red-500 transition shadow-md shadow-red-900"
       >
         Enviar feedback
       </button>
@@ -85,7 +88,7 @@ export default function Feedback() {
           localStorage.removeItem("user");
           navigate("/login");
         }}
-        className="mt-6 text-sm text-purple-600 underline"
+        className="mt-6 text-sm text-red-400 underline hover:text-red-300 transition"
       >
         Sair
       </button>
