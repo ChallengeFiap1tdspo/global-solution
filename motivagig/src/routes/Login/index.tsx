@@ -8,7 +8,6 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 
 export default function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm<LoginForm>();
-
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
@@ -18,7 +17,6 @@ export default function Login() {
     setApiError(null);
 
     try {
-     
       const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: {
@@ -33,8 +31,7 @@ export default function Login() {
         const trabalhadorEncontrado = await response.json();
         sessionStorage.setItem("trabalhadorLogado", JSON.stringify(trabalhadorEncontrado));
         navigate("/ajuda");
-      }
-      else if (response.status === 401 || response.status === 404) {
+      } else if (response.status === 401 || response.status === 404) {
         setApiError("CPF ou Senha inválidos.");
       } else {
         const errorData = await response.json();
@@ -53,80 +50,93 @@ export default function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-pink-50 to-purple-50">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md"
-      >
-        <h1 className="text-3xl font-bold text-center text-purple-600 mb-6">
-          Acesso do Trabalhador
-        </h1>
-        <div className="mb-4">
-          <label className="block text-pink-600 font-semibold mb-2">
-            CPF (somente números)
-          </label>
-          <input
-            type="text"
-            placeholder="12345678900"
-            {...register("cpf", {
-              required: "Informe seu CPF",
-              pattern: { value: /^\d{11}$/, message: "CPF deve conter 11 números" }
-            })}
-            className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 ${
-              errors.cpf
-                ? 'border-pink-600 ring-pink-400'
-                : 'border-purple-300 focus:ring-purple-400'
-            }`}
-            disabled={isLoading}
-          />
-          {errors.cpf && (
-            <p className="text-pink-600 text-sm mt-1">{errors.cpf.message}</p>
-          )}
+    <div className="min-h-screen w-full bg-black flex flex-col items-center justify-center px-4 py-8 relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-30"></div>
+      <div className="absolute top-10 right-10 w-20 h-20 bg-red-600 rounded-full blur-xl opacity-10 animate-pulse"></div>
+      <div className="absolute bottom-10 left-10 w-16 h-16 bg-red-500 rounded-full blur-lg opacity-10 animate-bounce"></div>
+
+      <div className="w-full max-w-md bg-zinc-900 rounded-3xl shadow-2xl p-8 border border-red-600 relative z-10 transform hover:scale-[1.01] transition-all duration-300">
+        
+        <div className="text-center mb-8 relative">
+          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent rounded-full"></div>
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-red-500 via-red-400 to-red-300 bg-clip-text text-transparent mb-4 tracking-tight">
+            Acesso do Trabalhador
+          </h1>
+          <div className="w-20 h-1 bg-gradient-to-r from-red-600 to-red-400 rounded-full mx-auto mb-6"></div>
         </div>
-        <div className="mb-4">
-          <label className="block text-pink-600 font-semibold mb-2">
-            Senha
-          </label>
-          <input
-            type="password"
-            placeholder="••••••••"
-            {...register("senha", { required: "Informe a senha" })}
-            className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 ${
-              errors.senha
-                ? 'border-pink-600 ring-pink-400'
-                : 'border-purple-300 focus:ring-purple-400'
-            }`}
-            disabled={isLoading}
-          />
-          {errors.senha && (
-            <p className="text-pink-600 text-sm mt-1">{errors.senha.message}</p>
-          )}
-        </div>
-        {apiError && (
-          <div className="bg-pink-100 border border-pink-400 text-pink-700 p-3 rounded-md mb-4 text-sm">
-            {apiError}
+
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+
+          <div className="group">
+            <label className="font-medium text-gray-200 mb-2 flex items-center">
+              <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+              CPF (somente números)
+            </label>
+            <input
+              type="text"
+              placeholder="12345678900"
+              {...register("cpf", {
+                required: "Informe seu CPF",
+                pattern: { value: /^\d{11}$/, message: "CPF deve conter 11 números" }
+              })}
+              disabled={isLoading}
+              className="w-full bg-black border-2 border-red-500/30 rounded-2xl p-4 text-white focus:outline-none focus:border-red-400 focus:ring-2 focus:ring-red-500/20 transition-all duration-300 group-hover:border-red-500/50 placeholder-gray-500 disabled:bg-gray-800 disabled:cursor-not-allowed"
+            />
+            {errors.cpf && (
+              <p className="text-red-400 text-sm mt-2 font-medium">{errors.cpf.message}</p>
+            )}
           </div>
-        )}
 
-        <button
-          type="submit"
-          disabled={isLoading}
-          className={`w-full text-white py-2 rounded-md transition-colors font-semibold ${
-            isLoading
-              ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-purple-600 hover:bg-pink-500'
-          }`}
-        >
-          {isLoading ? "Entrando..." : "Entrar"}
-        </button>
+          <div className="group">
+            <label className="font-medium text-gray-200 mb-2 flex items-center">
+              <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+              Senha
+            </label>
+            <input
+              type="password"
+              placeholder="••••••••"
+              {...register("senha", { required: "Informe a senha" })}
+              disabled={isLoading}
+              className="w-full bg-black border-2 border-red-500/30 rounded-2xl p-4 text-white focus:outline-none focus:border-red-400 focus:ring-2 focus:ring-red-500/20 transition-all duration-300 group-hover:border-red-500/50 placeholder-gray-500 disabled:bg-gray-800 disabled:cursor-not-allowed"
+            />
+            {errors.senha && (
+              <p className="text-red-400 text-sm mt-2 font-medium">{errors.senha.message}</p>
+            )}
+          </div>
 
-        <Link
-          to="/cadastro"
-          className="text-purple-600 text-center hover:underline mt-4 block"
-        >
-          Novo trabalhador? Cadastre-se aqui
-        </Link>
-      </form>
+          {apiError && (
+            <div className="bg-red-900/30 border-2 border-red-500/30 text-red-300 p-4 rounded-2xl text-sm font-medium">
+              {apiError}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="group relative bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 disabled:from-gray-700 disabled:to-gray-800 transition-all duration-300 text-white font-semibold py-4 rounded-2xl shadow-lg hover:shadow-red-500/20 hover:shadow-xl hover:scale-[1.02] disabled:hover:scale-100 active:scale-95 mt-2 overflow-hidden disabled:cursor-not-allowed"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] group-disabled:translate-x-[-100%] transition-transform duration-1000"></div>
+            <span className="relative flex items-center justify-center gap-2">
+              {isLoading ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  Entrando...
+                </>
+              ) : (
+                "Entrar"
+              )}
+            </span>
+          </button>
+
+          <Link
+            to="/cadastro"
+            className="text-center text-red-400 hover:text-red-300 font-medium transition-colors duration-300 mt-4 block hover:underline"
+          >
+            Novo trabalhador? Cadastre-se aqui
+          </Link>
+
+        </form>
+      </div>
     </div>
   );
 }

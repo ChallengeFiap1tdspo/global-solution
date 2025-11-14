@@ -48,21 +48,30 @@ export default function Faq() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-pink-50 p-8 flex flex-col items-center">
-      <h1 className="text-4xl font-bold text-purple-700 mb-8">
-        Perguntas Frequentes (FAQ)
-      </h1>
+    <div className="min-h-screen w-full bg-black p-8 flex flex-col items-center relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-30"></div>
+      <div className="absolute top-10 right-10 w-20 h-20 bg-red-600 rounded-full blur-xl opacity-10 animate-pulse"></div>
+      <div className="absolute bottom-10 left-10 w-16 h-16 bg-red-500 rounded-full blur-lg opacity-10 animate-bounce"></div>
 
-      <div className="w-full max-w-2xl space-y-4">
-        {perguntas.map((item, i) => (
-          <ItemFAQ
-            key={i}
-            pergunta={item.pergunta}
-            resposta={item.resposta}
-            ativo={ativo === i}
-            onClick={() => setAtivo(ativo === i ? null : i)}
-          />
-        ))}
+      <div className="w-full max-w-4xl relative z-10">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-red-500 via-red-400 to-red-300 bg-clip-text text-transparent mb-4">
+            Perguntas Frequentes (FAQ)
+          </h1>
+          <div className="w-32 h-1 bg-gradient-to-r from-red-600 to-red-400 rounded-full mx-auto"></div>
+        </div>
+
+        <div className="space-y-4">
+          {perguntas.map((item, i) => (
+            <ItemFAQ
+              key={i}
+              pergunta={item.pergunta}
+              resposta={item.resposta}
+              ativo={ativo === i}
+              onClick={() => setAtivo(ativo === i ? null : i)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
