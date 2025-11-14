@@ -13,7 +13,16 @@ export default function Cabecalho() {
   ];
 
   return (
-    <header className="bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md">
+    <header
+      className="bg-gradient-to-r 
+        from-black 
+        via-neutral-900 
+        to-red-700  
+        text-white 
+        shadow-[0_4px_20px_rgba(255,0,0,0.4)]
+        border-b border-red-600
+      "
+    >
       <Menu links={links} />
     </header>
   );

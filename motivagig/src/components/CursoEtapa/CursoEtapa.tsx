@@ -23,26 +23,29 @@ export default function CursoEtapa({
     setRespostas((prev) => ({ ...prev, [pergunta]: alternativa }));
     setFeedback((prev) => ({
       ...prev,
-      [pergunta]:
-        alternativa === correta ? "Correta!" : "Tente novamente!",
+      [pergunta]: alternativa === correta ? "Correta!" : "Tente novamente!",
     }));
   };
 
   return (
-    <div className="mt-10 bg-white shadow-lg rounded-3xl p-8 max-w-3xl text-left w-full">
-      <h2 className="text-2xl font-semibold text-purple-700 mb-4">
+    <div className="mt-10 bg-black border border-red-600 shadow-[0_0_15px_rgba(255,0,0,0.4)] rounded-3xl p-8 max-w-3xl w-full text-left">
+      <h2 className="text-2xl font-semibold text-red-500 mb-4">
         {etapa.titulo}
       </h2>
 
       {etapa.conteudo.map((texto, i) => (
-        <p key={i} className="text-slate-700 mb-4">
+        <p key={i} className="text-gray-300 mb-4">
           {texto}
         </p>
       ))}
 
       {etapa.questoes.map((q, index) => (
-        <div key={index} className="mt-6 border rounded-2xl p-4">
-          <p className="font-semibold text-purple-700 mb-3">{q.pergunta}</p>
+        <div
+          key={index}
+          className="mt-6 border border-red-500 rounded-2xl p-4 bg-black/40 shadow-[0_0_10px_rgba(255,0,0,0.2)]"
+        >
+          <p className="font-semibold text-red-400 mb-3">{q.pergunta}</p>
+
           {q.alternativas.map((alt) => (
             <button
               key={alt}
@@ -51,20 +54,21 @@ export default function CursoEtapa({
                 ${
                   respostas[q.pergunta] === alt
                     ? alt === q.correta
-                      ? "bg-green-100 border-green-500 text-green-700"
-                      : "bg-red-100 border-red-500 text-red-700"
-                    : "border-slate-200 hover:bg-purple-50"
+                      ? "bg-green-900 border-green-500 text-green-300"
+                      : "bg-red-900 border-red-600 text-red-300"
+                    : "border-red-700 text-gray-300 hover:bg-red-700/20"
                 }`}
             >
               {alt}
             </button>
           ))}
+
           {feedback[q.pergunta] && (
             <p
               className={`mt-2 font-medium ${
                 feedback[q.pergunta].includes("Correta")
-                  ? "text-green-600"
-                  : "text-red-500"
+                  ? "text-green-400"
+                  : "text-red-400"
               }`}
             >
               {feedback[q.pergunta]}
@@ -74,27 +78,30 @@ export default function CursoEtapa({
       ))}
 
       <div className="mt-8 flex justify-between">
+        {/* VOLTAR */}
         <button
           onClick={onVoltar}
           disabled={etapaAtual === 0}
-          className={`px-6 py-3 rounded-2xl font-semibold transition ${
-            etapaAtual === 0
-              ? "bg-slate-200 text-slate-400 cursor-not-allowed"
-              : "bg-purple-600 text-white hover:bg-pink-500"
-          }`}
+          className={`px-6 py-3 rounded-2xl font-semibold transition
+            ${
+              etapaAtual === 0
+                ? "bg-gray-700 text-gray-400 cursor-not-allowed"
+                : "bg-red-700 text-white hover:bg-red-600 shadow-[0_0_10px_rgba(255,0,0,0.4)]"
+            }`}
         >
           Voltar
         </button>
 
+  
         {etapaAtual < totalEtapas - 1 ? (
           <button
             onClick={onAvancar}
-            className="px-6 py-3 bg-purple-600 text-white rounded-2xl font-semibold hover:bg-pink-500 transition"
+            className="px-6 py-3 bg-red-700 text-white rounded-2xl font-semibold hover:bg-red-600 shadow-[0_0_10px_rgba(255,0,0,0.4)] transition"
           >
             Próxima Etapa →
           </button>
         ) : (
-          <button className="px-6 py-3 bg-green-600 text-white rounded-2xl font-semibold hover:bg-green-500 transition">
+          <button className="px-6 py-3 bg-green-800 text-white rounded-2xl font-semibold hover:bg-green-700 transition shadow-[0_0_10px_rgba(0,255,0,0.3)]">
             Finalizar Curso
           </button>
         )}
