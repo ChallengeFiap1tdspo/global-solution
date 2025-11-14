@@ -14,7 +14,7 @@ export default function Contato() {
 
       <div className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-8 border border-red-600 relative z-10 transform hover:scale-[1.01] transition-all duration-300">
         
-        {/* Header com efeito especial */}
+      
         <div className="text-center mb-8 relative">
           <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent rounded-full"></div>
           <h1 className="text-5xl font-bold bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent mb-4 tracking-tight drop-shadow-sm">
@@ -71,7 +71,7 @@ export default function Contato() {
             />
           </div>
 
-          {/* Campo Assunto */}
+      
           <div className="group">
             <label className="font-medium text-gray-700 mb-2 flex items-center">
               <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
