@@ -30,7 +30,7 @@ export default function Login() {
       if (response.ok) {
         const trabalhadorEncontrado = await response.json();
         sessionStorage.setItem("trabalhadorLogado", JSON.stringify(trabalhadorEncontrado));
-        navigate("/ajuda");
+        navigate("/boas-vindas");
       } else if (response.status === 401 || response.status === 404) {
         setApiError("CPF ou Senha inválidos.");
       } else {

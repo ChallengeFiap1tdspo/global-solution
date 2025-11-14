@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import type { CadastroForm } from "../../types/cadastro";
 
 export default function Cadastro() {
@@ -7,6 +8,7 @@ export default function Cadastro() {
   const senha = watch("senha");
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const onSubmit = async (data: CadastroForm) => {
     setIsLoading(true);
@@ -36,6 +38,7 @@ export default function Cadastro() {
 
       if (response.status === 201) {
         alert("Cadastro realizado com sucesso!");
+        navigate("/boas-vindas");
       } else {
         const erro = await response.json();
         const mensagemErro = erro.erro || `Erro ${response.status}: Falha ao cadastrar.`;
