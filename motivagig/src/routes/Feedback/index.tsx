@@ -6,16 +6,41 @@ import FeedbackDica from "../../components/FeedbackDica/FeedbackDica";
 export default function Feedback() {
   const navigate = useNavigate();
   const [user, setUser] = useState<{ email: string } | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [energia, setEnergia] = useState("");
   const [humor, setHumor] = useState("");
   const [faturamento, setFaturamento] = useState("");
   const [mensagem, setMensagem] = useState("");
 
   useEffect(() => {
-    const dados = localStorage.getItem("user");
-    if (!dados) navigate("/login");
-    else setUser(JSON.parse(dados));
+    const checkAuth = () => {
+      const trabalhadorLogado = sessionStorage.getItem("trabalhadorLogado");
+
+      if (!trabalhadorLogado) {
+        console.log("Usuário não autenticado, redirecionando...");
+        navigate("/login", { replace: true });
+        return;
+      }
+
+      const dados = localStorage.getItem("user");
+      if (dados) setUser(JSON.parse(dados));
+
+      setIsLoading(false); 
+    };
+
+    checkAuth();
   }, [navigate]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-red-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-red-400 font-medium">Verificando autenticação...</p>
+        </div>
+      </div>
+    );
+  }
 
   const dicas = [
     "💧 Beba água e mantenha-se hidratado!",
