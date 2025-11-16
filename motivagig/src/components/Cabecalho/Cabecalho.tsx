@@ -1,5 +1,6 @@
 import Menu from "../Menu/Menu";
 import type { NavLinkItem } from "../../types/menu";
+import ProfileMenu from "../../components/PerfilMenu/PerfilMenu";
 
 export default function Cabecalho() {
   const links: NavLinkItem[] = [
@@ -13,17 +14,17 @@ export default function Cabecalho() {
   ];
 
   return (
-    <header
-      className="bg-gradient-to-r 
-        from-black 
-        via-neutral-900 
-        to-red-700  
-        text-white 
-        shadow-[0_4px_20px_rgba(255,0,0,0.4)]
-        border-b border-red-600
-      "
-    >
-      <Menu links={links} />
+    <header className="bg-black text-white border-b border-neutral-800">
+      <div className="flex items-center justify-between px-6 py-2">
+     
+        <h1 className="text-xl font-bold">Gig.Up</h1>
+
+    
+        <div className="flex items-center gap-6">
+          <Menu links={links} />
+          <ProfileMenu />
+        </div>
+      </div>
     </header>
   );
 }

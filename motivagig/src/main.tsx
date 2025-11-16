@@ -4,7 +4,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App.tsx";
 import "./global.css";
-
 import Home from "./routes/Home/index.tsx";
 import Faq from "./routes/Faq/index.tsx";
 import Contato from "./routes/Contato/index.tsx";
@@ -14,11 +13,12 @@ import Sobre from "./routes/Sobre/index.tsx";
 import Login from "./routes/Login/index.tsx";
 import Cadastro from "./routes/Cadastro/index.tsx";
 import BoasVindas from "./routes/Boas-vindas/index.tsx";
-
 import CursoSemana from "./routes/Curso/index.tsx";
 import Feedback from "./routes/Feedback/index.tsx";
-
 import ProtectedRoute from "./routes/ProtectedRoute/index.tsx";
+import EditarPerfil from "./routes/EditarPerfil/index.tsx";
+import AlterarSenha from "./routes/AlterarSenha/index.tsx";
+import DesativarConta from "./routes/DesativarConta/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +28,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/boas-vindas", element: <BoasVindas /> },
+
       {
         path: "/curso-semana",
         element: (
@@ -44,12 +45,39 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+
       { path: "/faq", element: <Faq /> },
       { path: "/contato", element: <Contato /> },
       { path: "/equipe", element: <Equipe /> },
       { path: "/sobre", element: <Sobre /> },
       { path: "/login", element: <Login /> },
       { path: "/cadastro", element: <Cadastro /> },
+
+      // Rotas do menu Perfil:
+      {
+        path: "/editar",
+        element: (
+          <ProtectedRoute>
+            <EditarPerfil />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/alterar-senha",
+        element: (
+          <ProtectedRoute>
+            <AlterarSenha />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/desativar-conta",
+        element: (
+          <ProtectedRoute>
+            <DesativarConta />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
 ]);
