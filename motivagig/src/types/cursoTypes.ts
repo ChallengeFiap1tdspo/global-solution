@@ -10,3 +10,12 @@ export type Etapa = {
   conteudo: string[];
   questoes: Questao[];
 };
+
+
+export type CursoType = {
+  id: number;
+  titulo: string;
+  descricao: string;
+  ativo: boolean;
+  duracaoHoras: number;
+};

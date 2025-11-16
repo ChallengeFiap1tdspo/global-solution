@@ -1,7 +1,7 @@
-
 import Menu from "../Menu/Menu";
 import type { NavLinkItem } from "../../types/menu";
 import ProfileMenu from "../../components/PerfilMenu/PerfilMenu";
+import ThemeToggle from "../../components/ThemeButton/ThemeButton";
 
 export default function Cabecalho() {
   const links: NavLinkItem[] = [
@@ -21,6 +21,7 @@ export default function Cabecalho() {
 
         <div className="flex items-center gap-6">
           <Menu links={links} />
+          <ThemeToggle /> 
           <ProfileMenu />
         </div>
       </div>

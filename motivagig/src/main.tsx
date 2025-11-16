@@ -2,8 +2,11 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import ThemeProvider from "./context/ThemeProvider"; 
+
 import App from "./App.tsx";
 import "./global.css";
+
 import Home from "./routes/Home/index.tsx";
 import Faq from "./routes/Faq/index.tsx";
 import Contato from "./routes/Contato/index.tsx";
@@ -53,9 +56,8 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/cadastro", element: <Cadastro /> },
 
-
       {
-        path: "/editar-perfil", 
+        path: "/editar-perfil",
         element: (
           <ProtectedRoute>
             <EditarPerfil />
@@ -84,6 +86,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider> 
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </StrictMode>
 );
