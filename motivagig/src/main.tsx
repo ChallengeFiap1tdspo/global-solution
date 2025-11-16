@@ -53,9 +53,9 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/cadastro", element: <Cadastro /> },
 
-      // Rotas do menu Perfil:
+
       {
-        path: "/editar",
+        path: "/editar-perfil", 
         element: (
           <ProtectedRoute>
             <EditarPerfil />

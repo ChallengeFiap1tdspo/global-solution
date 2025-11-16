@@ -10,8 +10,6 @@ export default function Menu({ links }: MenuProps) {
 
   return (
     <nav className="flex items-center justify-between px-6 py-4 bg-black text-white shadow-lg">
-   
-
       <ul className="flex gap-6">
         {links.map((link) => (
           <li key={link.href}>

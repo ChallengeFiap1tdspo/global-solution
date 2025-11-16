@@ -10,7 +10,7 @@ export default function DesativarConta() {
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto">
+    <div className="p-6 max-w-md mx-auto mt-10 mb-20">
       <h1 className="text-2xl font-bold text-red-600 mb-4">
         Desativar Conta
       </h1>

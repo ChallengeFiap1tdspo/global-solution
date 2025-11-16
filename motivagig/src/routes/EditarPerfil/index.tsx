@@ -1,3 +1,4 @@
+
 import { useForm } from "react-hook-form";
 
 type EditarPerfilForm = {
@@ -14,24 +15,27 @@ export default function EditarPerfil() {
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto">
+    <div className="p-6 max-w-md mx-auto mt-10 bg-black/80 text-white rounded-lg shadow-md">
       <h1 className="text-2xl font-bold mb-4">Editar Perfil</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
         <input
           {...register("nome")}
-          className="border p-2 rounded"
+          className="border p-2 rounded bg-black text-white border-white/40"
           placeholder="Novo nome"
         />
 
         <input
           {...register("email")}
-          className="border p-2 rounded"
+          className="border p-2 rounded bg-black text-white border-white/40"
           placeholder="Novo email"
           type="email"
         />
 
-        <button className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+        <button
+          type="submit"
+          className="bg-red-600 text-white py-2 rounded hover:bg-red-700 transition"
+        >
           Salvar alterações
         </button>
       </form>

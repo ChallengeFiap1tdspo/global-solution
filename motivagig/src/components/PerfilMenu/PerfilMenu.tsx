@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function ProfileMenu() {
   const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
   const navigate = useNavigate();
 
   const logout = () => {
@@ -10,9 +12,18 @@ export default function ProfileMenu() {
     navigate("/login");
   };
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div className="relative">
- 
+    <div className="relative" ref={menuRef}>
       <button
         onClick={() => setOpen(!open)}
         className="text-white hover:text-red-400 transition"
@@ -21,9 +32,8 @@ export default function ProfileMenu() {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 bg-black border border-red-600 rounded-lg shadow-xl w-40">
+        <div className="absolute right-0 mt-2 bg-black border border-red-600 rounded-lg shadow-xl w-40 z-50">
           <ul className="flex flex-col text-sm text-white">
-            
             <li>
               <Link
                 to="/editar-perfil"
@@ -33,7 +43,6 @@ export default function ProfileMenu() {
                 Editar Perfil
               </Link>
             </li>
-
             <li>
               <Link
                 to="/desativar-conta"
@@ -43,7 +52,6 @@ export default function ProfileMenu() {
                 Desativar Conta
               </Link>
             </li>
-
             <li>
               <button
                 onClick={logout}
@@ -52,7 +60,6 @@ export default function ProfileMenu() {
                 Sair
               </button>
             </li>
-
           </ul>
         </div>
       )}

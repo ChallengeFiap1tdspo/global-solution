@@ -1,3 +1,4 @@
+
 import Menu from "../Menu/Menu";
 import type { NavLinkItem } from "../../types/menu";
 import ProfileMenu from "../../components/PerfilMenu/PerfilMenu";
@@ -14,12 +15,10 @@ export default function Cabecalho() {
   ];
 
   return (
-    <header className="bg-black text-white border-b border-neutral-800">
+    <header className="bg-black text-white border-b border-neutral-800 overflow-visible">
       <div className="flex items-center justify-between px-6 py-2">
-     
         <h1 className="text-xl font-bold">Gig.Up</h1>
 
-    
         <div className="flex items-center gap-6">
           <Menu links={links} />
           <ProfileMenu />
