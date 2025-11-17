@@ -1,1 +1,109 @@
+
+ 
 @import "tailwindcss";
+ 
+
+
+.high-contrast {
+
+
+
+  background-color: #FFFFFF !important;
+
+  color: #DC2626 !important; 
+}
+ 
+.high-contrast body,
+
+.high-contrast div,
+
+.high-contrast header,
+
+.high-contrast footer,
+
+.high-contrast main,
+
+.high-contrast section,
+
+.high-contrast nav,
+
+.high-contrast div[class*="bg-"] {
+
+  background-color: #FFFFFF !important;
+
+  color: #DC2626 !important;
+
+}
+ 
+
+
+.high-contrast a,
+
+.high-contrast button,
+
+.high-contrast input,
+
+.high-contrast select,
+
+.high-contrast textarea {
+
+  border: 2px solid #DC2626 !important; 
+
+  color: #DC2626 !important;
+
+  background-color: #FFFFFF !important; 
+
+}
+ 
+
+
+.high-contrast [class*="bg-gradient-to-"] {
+
+  background-image: none !important;
+
+}
+ 
+.high-contrast [class*="shadow-"] {
+
+  box-shadow: none !important;
+
+}
+ 
+
+
+.high-contrast [class*="text-red-"],
+
+.high-contrast [class*="text-gray-"],
+
+.high-contrast [class*="text-transparent"],
+
+.high-contrast [class*="text-white"],
+
+.high-contrast [class*="text-zinc-"] {
+
+  color: #DC2626 !important;
+
+  background-image: none !important;
+
+  -webkit-text-fill-color: initial !important; 
+
+}
+ 
+
+
+.high-contrast img[src*="GitHub-logo"] {
+
+
+
+  filter: none !important;
+
+}
+
+.high-contrast img[src*="LogoLinkedlin"] {
+
+
+
+  filter: none !important; 
+
+}
+ 
