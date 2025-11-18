@@ -1,27 +1,23 @@
-import type { CursoType } from "../../types/cursoTypes";
-
-const MOCK: CursoType[] = [
-  {
-    id: 1,
-    titulo: "React Avançado",
-    ativo: true,
-    duracaoHoras: 12,
-    descricao: "Curso completo sobre hooks, context e otimização."
-  },
-];
+import { Link } from "react-router-dom";
 
 export default function CursoLista() {
   return (
-    <div>
-      {MOCK.map((c) => (
-        <div key={c.id} className="p-4 border mb-2 rounded">
-          <h3 className="text-xl font-semibold">{c.titulo}</h3>
-          <p>{c.descricao}</p>
-          <a href={`/curso/${c.id}`} className="text-blue-500 underline hover:opacity-70">
-            Ver
-          </a>
+    <div className="min-h-screen flex items-center justify-center p-6 bg-black text-white">
+      <div className="w-full max-w-md">
+        <h1 className="text-3xl font-extrabold text-red-400 text-center mb-6">Curso de Python</h1>
+
+        <div className="border border-red-600 rounded-2xl p-6 bg-black shadow">
+          <h2 className="text-xl font-semibold text-red-300 mb-2">Python — Unidade única</h2>
+          <p className="text-sm text-red-200 mb-4">10 perguntas • perguntas em sequência • feedback imediato</p>
+
+          <Link
+            to="/curso-semana/1"
+            className="block text-center bg-red-700 hover:bg-red-600 text-white px-4 py-3 rounded-lg font-semibold transition"
+          >
+            Acessar o curso
+          </Link>
         </div>
-      ))}
+      </div>
     </div>
   );
 }
