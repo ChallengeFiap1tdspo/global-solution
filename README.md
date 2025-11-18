@@ -135,4 +135,4 @@ Email: [contato@motigig.com](mailto:contato@motigig.com)
 
 * GitHub: ([Clique e veja o nosso repositorio](https://github.com/ChallengeFiap1tdspo/global-solution.git))
 * YouTube:([Assista](https://www.youtube.com/watch?v=bZ8Uqydpbko))
-* Vercel: ([clique](https://motivagig-dlflxma8b-paulo-estalises-projects.vercel.app))
+* Vercel: ([clique](https://motivagig.vercel.app/))
