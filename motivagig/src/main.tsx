@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import ThemeProvider from "./context/ThemeProvider"; 
+import ThemeProvider from "./context/ThemeProvider";
 
 import App from "./App.tsx";
 import "./global.css";
@@ -16,8 +16,11 @@ import Sobre from "./routes/Sobre/index.tsx";
 import Login from "./routes/Login/index.tsx";
 import Cadastro from "./routes/Cadastro/index.tsx";
 import BoasVindas from "./routes/Boas-vindas/index.tsx";
+
+import CursoLista from "./routes/CursoLista/index.tsx";
 import CursoSemana from "./routes/Curso/index.tsx";
 import Feedback from "./routes/Feedback/index.tsx";
+
 import ProtectedRoute from "./routes/ProtectedRoute/index.tsx";
 import EditarPerfil from "./routes/EditarPerfil/index.tsx";
 import AlterarSenha from "./routes/AlterarSenha/index.tsx";
@@ -32,14 +35,36 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/boas-vindas", element: <BoasVindas /> },
 
+      // LISTA DO CURSO
       {
-        path: "/curso-semana",
+        path: "/curso",
+        element: (
+          <ProtectedRoute>
+            <CursoLista />
+          </ProtectedRoute>
+        ),
+      },
+
+      // PERGUNTA POR ID
+      {
+        path: "/curso-semana/:id",
         element: (
           <ProtectedRoute>
             <CursoSemana />
           </ProtectedRoute>
         ),
       },
+
+      // ACESSO SEM ID → REDIRECIONA PARA LISTA
+      {
+        path: "/curso-semana",
+        element: (
+          <ProtectedRoute>
+            <CursoLista />
+          </ProtectedRoute>
+        ),
+      },
+
       {
         path: "/feedback",
         element: (
@@ -64,6 +89,7 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+
       {
         path: "/alterar-senha",
         element: (
@@ -72,6 +98,7 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+
       {
         path: "/desativar-conta",
         element: (
@@ -86,7 +113,7 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ThemeProvider> 
+    <ThemeProvider>
       <RouterProvider router={router} />
     </ThemeProvider>
   </StrictMode>
