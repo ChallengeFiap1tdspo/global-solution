@@ -137,4 +137,14 @@ export default function EditarPerfil() {
             type="email"
           />
         </div>
+          <button
+          type="submit"
+          className="mt-4 w-full bg-gradient-to-r from-red-700 to-red-600 text-white font-bold py-3 rounded-xl hover:from-red-600 hover:to-red-500 transition-all duration-300 shadow-lg hover:shadow-red-500/20 active:scale-95"
+        >
+          Salvar Alterações
+        </button>
+      </form>
+    </div>
+  );
+}
        
