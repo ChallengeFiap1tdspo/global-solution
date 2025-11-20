@@ -39,3 +39,20 @@ export default function EditarPerfil() {
             "X-API-Key": API_KEY,
           },
         });
+        if (response.ok) {
+          const dados = await response.json();
+         
+          reset(dados);
+        } else {
+          console.error("Erro ao buscar perfil:", response.status);
+          alert("Não foi possível carregar seus dados.");
+        }
+      } catch (error) {
+        console.error("Erro de conexão (GET):", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+ 
+    carregarDados();
+  }, [reset, API_URL, API_KEY]);
