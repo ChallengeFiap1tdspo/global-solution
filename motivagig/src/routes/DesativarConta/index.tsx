@@ -1,30 +1,42 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+ 
+ 
+const API_URL = import.meta.env.VITE_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
+ 
 export default function DesativarConta() {
   const navigate = useNavigate();
-
-  const desativar = () => {
-    alert("Conta desativada!");
-    localStorage.removeItem("user");
-    navigate("/");
-  };
-
-  return (
-    <div className="p-6 max-w-md mx-auto mt-10 mb-20">
-      <h1 className="text-2xl font-bold text-red-600 mb-4">
-        Desativar Conta
-      </h1>
-
-      <p className="mb-4">
-        Tem certeza que deseja desativar sua conta? Essa ação é irreversível.
-      </p>
-
-      <button
-        onClick={desativar}
-        className="bg-red-600 text-white py-2 rounded hover:bg-red-700 w-full"
-      >
-        Desativar Conta
-      </button>
-    </div>
-  );
-}
+  const [isLoading, setIsLoading] = useState(false);
+ 
+  const desativar = async () => {
+   
+    const dadosString = sessionStorage.getItem("trabalhadorLogado");
+   
+    if (!dadosString) {
+      alert("Erro: Sessão expirada ou usuário não identificado.");
+      navigate("/login");
+      return;
+    }
+ 
+    const trabalhador = JSON.parse(dadosString);
+   
+   
+    if (!window.confirm("Tem certeza absoluta? Sua conta será desativada.")) {
+        return;
+    }
+ 
+    setIsLoading(true);
+ 
+    try {
+   
+     
+      const response = await fetch(`${API_URL}/${trabalhador.id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "X-API-Key": API_KEY,
+        },
+      });
+ 
