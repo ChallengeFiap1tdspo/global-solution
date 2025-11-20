@@ -64,5 +64,21 @@ export default function DesativarConta() {
       <h1 className="text-2xl font-bold text-red-500 mb-4 text-center">
         Desativar Conta
       </h1>
+      <p className="mb-6 text-gray-300 text-center">
+        Tem certeza que deseja desativar sua conta? <br/>
+        <span className="text-red-400 font-semibold">Essa ação tornará seu perfil inativo.</span>
+      </p>
+ 
+      <button
+        onClick={desativar}
+        disabled={isLoading}
+        className={`w-full py-3 rounded-xl font-bold transition-all shadow-lg
+          ${isLoading
+            ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
+            : 'bg-red-600 text-white hover:bg-red-700 hover:shadow-red-900/50 active:scale-95'
+          }`}
+          >
+          {isLoading ? "Processando..." : "Confirmar Desativação"}
+      </button>
  
  
