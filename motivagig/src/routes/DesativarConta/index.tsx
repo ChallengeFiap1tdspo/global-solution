@@ -39,4 +39,12 @@ export default function DesativarConta() {
             "X-API-Key": API_KEY,
         },
       });
+      if (response.status === 204 || response.ok) {
+        alert("Conta desativada com sucesso! Sentiremos sua falta.");
+       
+       
+        sessionStorage.removeItem("trabalhadorLogado");
+        navigate("/");
+       
+      } else {
  
