@@ -56,3 +56,32 @@ export default function EditarPerfil() {
  
     carregarDados();
   }, [reset, API_URL, API_KEY]);
+  const onSubmit = async (data: Trabalhador) => {
+    setIsLoading(true);
+    try {
+      const dadosSessao = sessionStorage.getItem("trabalhadorLogado");
+      if (!dadosSessao) {
+        alert("Erro: Usuário não autenticado.");
+        return;
+      }
+     
+      const usuarioLogado = JSON.parse(dadosSessao);
+      const id = usuarioLogado.id;
+ 
+     
+      const response = await fetch(`${API_URL}/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "X-API-Key": API_KEY,
+        },
+        body: JSON.stringify(data),
+      });
+ 
+      if (response.ok) {
+        const dadosAtualizados = await response.json();
+       
+       
+        reset(dadosAtualizados);
+       
