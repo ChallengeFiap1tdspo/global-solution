@@ -108,4 +108,33 @@ export default function EditarPerfil() {
       </div>
     );
   }
+  return (
+    <div className="p-6 max-w-md mx-auto mt-10 bg-zinc-900 text-white rounded-2xl shadow-xl border border-red-600">
+      <h1 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-red-500 to-red-800 bg-clip-text text-transparent">
+        Editar Perfil
+      </h1>
+ 
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-300">
+            Nome Completo
+          </label>
+          <input
+            {...register("nome", { required: true })}
+            className="w-full border border-red-900/50 bg-black text-white p-3 rounded-xl focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none transition-all"
+            placeholder="Seu nome"
+          />
+        </div>
+ 
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-300">
+            E-mail
+          </label>
+          <input
+            {...register("email", { required: true })}
+            className="w-full border border-red-900/50 bg-black text-white p-3 rounded-xl focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none transition-all"
+            placeholder="Seu e-mail"
+            type="email"
+          />
+        </div>
        
