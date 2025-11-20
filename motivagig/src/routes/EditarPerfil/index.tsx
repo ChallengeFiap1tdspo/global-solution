@@ -84,4 +84,28 @@ export default function EditarPerfil() {
        
        
         reset(dadosAtualizados);
+        sessionStorage.setItem("trabalhadorLogado", JSON.stringify(dadosAtualizados));
+       
+        alert("✅ Perfil atualizado com sucesso!");
+      } else {
+       
+        const erroApi = await response.json().catch(() => ({}));
+        alert(`Falha ao atualizar: ${erroApi.erro || "Erro desconhecido no servidor."}`);
+      }
+ 
+    } catch (error) {
+      console.error("Erro de conexão (PUT):", error);
+      alert("Erro de conexão. Verifique sua internet e tente novamente.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+ 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-black">
+        <div className="text-white text-xl animate-pulse">Carregando...</div>
+      </div>
+    );
+  }
        
