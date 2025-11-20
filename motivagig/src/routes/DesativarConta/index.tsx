@@ -59,5 +59,10 @@ export default function DesativarConta() {
       setIsLoading(false);
     }
   };
+  return (
+    <div className="p-6 max-w-md mx-auto mt-10 mb-20 bg-zinc-900 text-white rounded-2xl shadow-xl border border-red-600">
+      <h1 className="text-2xl font-bold text-red-500 mb-4 text-center">
+        Desativar Conta
+      </h1>
  
  
