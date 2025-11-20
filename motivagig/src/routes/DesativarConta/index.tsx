@@ -80,5 +80,15 @@ export default function DesativarConta() {
           >
           {isLoading ? "Processando..." : "Confirmar Desativação"}
       </button>
+      <button
+        onClick={() => navigate(-1)}
+        disabled={isLoading}
+        className="w-full mt-3 py-2 text-gray-400 hover:text-white hover:underline transition-colors text-sm"
+      >
+        Cancelar e voltar
+      </button>
+    </div>
+  );
+}
  
  
