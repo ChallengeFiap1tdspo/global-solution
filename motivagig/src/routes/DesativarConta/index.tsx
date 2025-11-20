@@ -46,5 +46,18 @@ export default function DesativarConta() {
         sessionStorage.removeItem("trabalhadorLogado");
         navigate("/");
        
-      } else {
+      } else {const errorData = await response.json().catch(() => ({}));
+        const msgErro = errorData.erro || `Erro ${response.status}: Falha ao desativar.`;
+        alert(msgErro);
+      }
+ 
+    } catch (error) {
+     
+      console.error("Erro na requisição:", error);
+      alert("Erro de conexão. Verifique sua internet e tente novamente.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+ 
  
