@@ -1,31 +1,78 @@
-import { Link, useLocation } from "react-router-dom";
-import type { NavLinkItem } from "../../types/menu";
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import type { MenuProps } from "../../types/menu";
 
-type MenuProps = {
-  links: NavLinkItem[];
-};
-
-export default function Menu({ links }: MenuProps) {
-  const location = useLocation();
+export default function Menu({ links = [] }: MenuProps) {
+  const [open, setOpen] = useState(false);
 
   return (
-    <nav className="flex items-center justify-between px-6 py-4 bg-black text-white shadow-lg">
-      <ul className="flex gap-6">
-        {links.map((link) => (
-          <li key={link.href}>
-            <Link
+    <nav className="px-4 py-3 bg-black text-white">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <h1 className="text-xl font-bold">Gig.Up</h1>
+
+        <div className="hidden md:flex md:items-center md:gap-6">
+          {links.map((link) => (
+            <NavLink
+              key={link.label}
               to={link.href}
-              className={`${
-                location.pathname === link.href
-                  ? "border-b-2 border-red-500 text-red-500"
-                  : "text-white/80 hover:text-red-500"
-              } transition-colors font-medium`}
+              end
+              className={({ isActive }) =>
+                `px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                  isActive
+                    ? "text-red-500"
+                    : "text-white/80 hover:text-red-500"
+                }`
+              }
             >
               {link.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
+            </NavLink>
+          ))}
+        </div>
+
+        <button
+          aria-label={open ? "Fechar menu" : "Abrir menu"}
+          className="md:hidden p-2"
+          onClick={() => setOpen(!open)}
+          type="button"
+        >
+          {open ? (
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path d="M6 6L18 18" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              <path d="M6 18L18 6" stroke="white" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          ) : (
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path d="M3 6h18" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              <path d="M3 12h18" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              <path d="M3 18h18" stroke="white" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          )}
+        </button>
+      </div>
+
+      {open && (
+        <div className="md:hidden mt-2 px-4 pb-3">
+          <div className="flex flex-col gap-2">
+            {links.map((link) => (
+              <NavLink
+                key={link.label}
+                to={link.href}
+                end
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    isActive
+                      ? "text-red-500"
+                      : "text-white/80 hover:text-red-500"
+                  }`
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
