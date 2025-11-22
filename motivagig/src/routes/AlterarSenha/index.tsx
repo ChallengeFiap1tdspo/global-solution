@@ -14,11 +14,9 @@ export default function AlterarSenha() {
   };
 
   return (
-<<<<<<< HEAD
+
     <div className="p-6 max-w-md mx-auto min-h-[calc(100vh-250px)] flex flex-col">
-=======
-    <div className="p-6 max-w-md mx-auto pb-10">
->>>>>>> origin/develop
+
       <h1 className="text-2xl font-bold mb-4">Alterar Senha</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
