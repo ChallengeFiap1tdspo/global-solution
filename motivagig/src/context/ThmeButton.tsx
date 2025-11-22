@@ -1,23 +1,14 @@
- 
 import { useTheme } from "../../src/hooks/useTheme";
- 
+
 export default function ThemeButton() {
   const { theme, toggleTheme } = useTheme();
- 
 
-  const getNextThemeName = () => {
-    if (theme === "light") return "Escuro";
-    if (theme === "dark") return "Alto Contraste";
-    return "Claro";
-  };
- 
   return (
-<button 
+    <button
       onClick={toggleTheme}
-  
-      className="text-white hover:text-red-400 transition whitespace-nowrap"
->
-      Mudar para {getNextThemeName()}
-</button>
+      className="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 w-full text-left"
+    >
+      Trocar para {theme === "dark" ? "claro" : "escuro"}
+    </button>
   );
 }

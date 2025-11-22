@@ -11,16 +11,16 @@ export default function UserMenu() {
   };
 
   return (
-    <div className="fixed top-4 right-4 z-50">
+    <div className="relative">
       <button
+        className="bg-gray-800 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-700 w-full text-left"
         onClick={() => setOpen(!open)}
-        className="bg-gray-800 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-700"
       >
         Conta
       </button>
 
       {open && (
-        <div className="mt-2 bg-white rounded-lg shadow-lg border w-48">
+        <div className="mt-2 bg-white rounded-lg shadow-lg border w-48 absolute right-0 z-50">
           <ul className="text-gray-800">
             <li>
               <Link
@@ -30,7 +30,6 @@ export default function UserMenu() {
                 Editar Perfil
               </Link>
             </li>
-
             <li>
               <Link
                 to="/alterar-senha"
@@ -39,7 +38,6 @@ export default function UserMenu() {
                 Alterar Senha
               </Link>
             </li>
-
             <li>
               <Link
                 to="/desativar-conta"
@@ -48,7 +46,6 @@ export default function UserMenu() {
                 Desativar Conta
               </Link>
             </li>
-
             <li>
               <button
                 onClick={handleLogout}
